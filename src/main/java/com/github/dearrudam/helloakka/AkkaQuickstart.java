@@ -14,7 +14,7 @@ public class AkkaQuickstart {
 
         final ActorSystem system = ActorSystem.create("helloakkajava");
         try {
-            final ActorRef printerActor = system.actorOf(Printer.props(null), "printerActor");
+            final ActorRef printerActor = system.actorOf(Printer.props(), "printerActor");
             final ActorRef portugueseGreeter = system.actorOf(Greeter.props("Olá", printerActor), "portugueseGreeter");
             final ActorRef englishGreeter = system.actorOf(Greeter.props("Hello", printerActor), "englishGreeter");
 

@@ -4,28 +4,35 @@ import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
 import akka.actor.Props;
 
+import java.util.Optional;
+
 /**
  * Printer
  */
 public class Printer extends AbstractActor {
 
+    private final ActorRef actorRef;
+
+    public Printer(ActorRef actorRef) {
+        this.actorRef = actorRef;
+    }
+
     public static Props props(ActorRef actorRef) {
         return Props.create(Printer.class, () -> new Printer(actorRef));
     }
 
-    private final ActorRef requestorRef;
-
-    public Printer(ActorRef requestorRef) {
-        this.requestorRef = requestorRef;
+    public static Props props() {
+        return props(null);
     }
 
     @Override
     public Receive createReceive() {
-        return receiveBuilder().match(Greeting.class, (greeting) -> {
-            System.out.println(greeting.message);
-            if(this.requestorRef!=null)
-                this.requestorRef.tell(greeting, getSelf());
-        }).build();
+        return receiveBuilder().match(Greeting.class, this::print).build();
+    }
+
+    protected void print(final Greeting greeting) {
+        System.out.println(greeting.message);
+        Optional.ofNullable(this.actorRef).ifPresent((actorRef1 -> actorRef1.tell(greeting, getSelf())));
     }
 
     public static class Greeting {

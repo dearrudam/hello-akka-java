@@ -1,13 +1,11 @@
 package com.github.dearrudam.helloakka;
 
-import static org.junit.Assert.assertEquals;
-
-import com.github.dearrudam.helloakka.Printer.Greeting;
-
-import org.junit.Test;
-
 import akka.actor.ActorRef;
 import akka.testkit.javadsl.TestKit;
+import com.github.dearrudam.helloakka.Printer.Greeting;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * PrinterTest
@@ -15,7 +13,7 @@ import akka.testkit.javadsl.TestKit;
 public class PrinterTest extends BaseTest {
 
     @Test
-    public void testGreeterActorSendingOfGreeting() {
+    public void testPrinterActorSendingOfGreeting() {
         final TestKit testProbe = new TestKit(system);
         final ActorRef printer = system.actorOf(Printer.props(testProbe.getRef()));
         printer.tell(new Greeting("Hello, Akka"), ActorRef.noSender());

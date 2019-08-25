@@ -26,11 +26,18 @@ public class Greeter extends AbstractActor {
 
     @Override
     public Receive createReceive() {
-        return receiveBuilder().match(WhoToGreet.class, (wtg) -> {
-            this.greeting = message + ", " + wtg.who;
-        }).match(Greet.class, (g) -> {
-            this.printerActor.tell(new Greeting(this.greeting), getSelf());
-        }).build();
+        return receiveBuilder()
+                .match(WhoToGreet.class, this::prepareGreetingMessage)
+                .match(Greet.class, this::sendToPrinter)
+                .build();
+    }
+
+    protected void prepareGreetingMessage(WhoToGreet wtg) {
+        this.greeting = message + ", " + wtg.who;
+    }
+
+    protected void sendToPrinter(Greet g) {
+        this.printerActor.tell(new Greeting(this.greeting), getSelf());
     }
 
     // Message Types
@@ -45,7 +52,8 @@ public class Greeter extends AbstractActor {
     }
 
     public static class Greet {
-        public Greet() {}
+        public Greet() {
+        }
     }
 
 }
