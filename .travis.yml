@@ -1,11 +1,4 @@
 language: java
-jdk: openjdk8
-branches:
-  only:
-  - master
-cache:
-  directories:
-  - $HOME/.m2
-script:
-  - ./mvnw cobertura:cobertura
+sudo: false # faster builds
+after_success:
   - bash <(curl -s https://codecov.io/bash)
