@@ -9,7 +9,7 @@ import akka.actor.Props;
 /**
  * Greeter
  */
-class Greeter extends AbstractActor {
+public class Greeter extends AbstractActor {
 
     public static Props props(String message, ActorRef printerActor) {
         return Props.create(Greeter.class, () -> new Greeter(message, printerActor));

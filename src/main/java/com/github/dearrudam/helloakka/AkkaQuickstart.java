@@ -8,9 +8,8 @@ import akka.actor.ActorSystem;
 /**
  * AkkaQuickstart
  */
-class AkkaQuickstart {
+public class AkkaQuickstart {
 
-    @SuppressWarnings("SpellCheckingInspection")
     public static void main(String[] args) {
 
         final ActorSystem system = ActorSystem.create("helloakkajava");

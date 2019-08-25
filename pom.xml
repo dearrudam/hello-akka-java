@@ -7,7 +7,7 @@
       <java.version>1.8</java.version>
       <maven.compiler.source>${java.version}</maven.compiler.source>
       <maven.compiler.target>${java.version}</maven.compiler.target>
-      <akka.version>2.5.25</akka.version>
+      <akka.version>2.6.0-M6</akka.version>
       <junit.version>4.12</junit.version>
     </properties>
 

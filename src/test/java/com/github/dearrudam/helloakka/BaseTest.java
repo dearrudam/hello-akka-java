@@ -9,7 +9,7 @@ import akka.testkit.javadsl.TestKit;
 /**
  * BaseTest
  */
-abstract class BaseTest {
+public abstract class BaseTest {
     static ActorSystem system;
 
     @BeforeClass

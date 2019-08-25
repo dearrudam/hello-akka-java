@@ -9,7 +9,7 @@ import java.util.Optional;
 /**
  * Printer
  */
-class Printer extends AbstractActor {
+public class Printer extends AbstractActor {
 
     private final ActorRef actorRef;
 
