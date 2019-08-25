@@ -9,7 +9,7 @@ import com.github.dearrudam.helloakka.Printer.Greeting;
 import org.junit.Test;
 
 import akka.actor.ActorRef;
-import akka.testkit.TestKit;
+import akka.testkit.javadsl.TestKit;
 
 /**
  * GreeterTest
@@ -19,7 +19,7 @@ public class GreeterTest extends BaseTest{
     @Test
     public void testGreeterActorSendingOfGreeting() {
         final TestKit testProbe = new TestKit(system);
-        final ActorRef helloGreeter = system.actorOf(Greeter.props("Hello", testProbe.testActor()));
+        final ActorRef helloGreeter = system.actorOf(Greeter.props("Hello", testProbe.getRef()));
         helloGreeter.tell(new WhoToGreet("Akka"), ActorRef.noSender());
         helloGreeter.tell(new Greet(), ActorRef.noSender());
         Greeting greeting = testProbe.expectMsgClass(Greeting.class);
