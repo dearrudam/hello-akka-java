@@ -1,4 +1,11 @@
 language: java
-sudo: false # faster builds
-after_success:
+jdk: openjdk8
+branches:
+  only:
+  - master
+cache:
+  directories:
+  - $HOME/.m2
+script:
+  - ./mvnw test
   - bash <(curl -s https://codecov.io/bash)
