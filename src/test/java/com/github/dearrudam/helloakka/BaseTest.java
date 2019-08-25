@@ -9,8 +9,8 @@ import akka.testkit.javadsl.TestKit;
 /**
  * BaseTest
  */
-public abstract class BaseTest {
-    public static ActorSystem system;
+abstract class BaseTest {
+    static ActorSystem system;
 
     @BeforeClass
     public static void setup() {

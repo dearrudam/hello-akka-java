@@ -9,11 +9,11 @@ import java.util.Optional;
 /**
  * Printer
  */
-public class Printer extends AbstractActor {
+class Printer extends AbstractActor {
 
     private final ActorRef actorRef;
 
-    public Printer(ActorRef actorRef) {
+    private Printer(ActorRef actorRef) {
         this.actorRef = actorRef;
     }
 
@@ -30,7 +30,7 @@ public class Printer extends AbstractActor {
         return receiveBuilder().match(Greeting.class, this::print).build();
     }
 
-    protected void print(final Greeting greeting) {
+    private void print(final Greeting greeting) {
         System.out.println(greeting.message);
         Optional.ofNullable(this.actorRef).ifPresent((actorRef1 -> actorRef1.tell(greeting, getSelf())));
     }

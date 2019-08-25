@@ -8,8 +8,9 @@ import akka.actor.ActorSystem;
 /**
  * AkkaQuickstart
  */
-public class AkkaQuickstart {
+class AkkaQuickstart {
 
+    @SuppressWarnings("SpellCheckingInspection")
     public static void main(String[] args) {
 
         final ActorSystem system = ActorSystem.create("helloakkajava");
@@ -25,6 +26,7 @@ public class AkkaQuickstart {
             englishGreeter.tell(new Greeter.Greet(), ActorRef.noSender());
 
             System.out.println(">>> Press ENTER to exit <<<");
+            //noinspection ResultOfMethodCallIgnored
             System.in.read();
         } catch (IOException e) {
 			e.printStackTrace();

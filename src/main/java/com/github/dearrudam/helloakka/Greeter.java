@@ -9,7 +9,7 @@ import akka.actor.Props;
 /**
  * Greeter
  */
-public class Greeter extends AbstractActor {
+class Greeter extends AbstractActor {
 
     public static Props props(String message, ActorRef printerActor) {
         return Props.create(Greeter.class, () -> new Greeter(message, printerActor));
@@ -19,7 +19,7 @@ public class Greeter extends AbstractActor {
     private final ActorRef printerActor;
     private String greeting = "";
 
-    public Greeter(String message, ActorRef printerActor) {
+    private Greeter(String message, ActorRef printerActor) {
         this.message = message;
         this.printerActor = printerActor;
     }
@@ -32,18 +32,18 @@ public class Greeter extends AbstractActor {
                 .build();
     }
 
-    protected void prepareGreetingMessage(WhoToGreet wtg) {
+    private void prepareGreetingMessage(WhoToGreet wtg) {
         this.greeting = message + ", " + wtg.who;
     }
 
-    protected void sendToPrinter(Greet g) {
+    private void sendToPrinter(Greet g) {
         this.printerActor.tell(new Greeting(this.greeting), getSelf());
     }
 
     // Message Types
     public static class WhoToGreet {
 
-        public final String who;
+        final String who;
 
         public WhoToGreet(String who) {
             this.who = who;
