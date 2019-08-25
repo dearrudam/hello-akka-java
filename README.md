@@ -15,7 +15,7 @@ Maven:
 
 	$ ./mvnw compile exec:exec
 
-Maven:
+Gradle:
 
 	$ ./gradlew run
 
