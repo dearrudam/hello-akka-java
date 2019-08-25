@@ -11,9 +11,8 @@ $ ./mvnw compile exec:exec
 
 Expected output:
 
-`
->>> Press ENTER to exit <<<
-Olá, Max
-Hello, Max
+`>>> Press ENTER to exit <<<`
 
-`
+`Olá, Max`
+
+`Hello, Max`
